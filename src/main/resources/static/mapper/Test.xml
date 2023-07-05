@@ -2,11 +2,8 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="com.trading.coin.dao.TestDao">
-
-    <select id="selectTest" resultType="java.util.ArrayList">
-        select * from coin.tb_test
+<mapper namespace="com.trading.coin.chart.dao.TestDao">
+    <select id="selectTest" resultType="java.util.Map">
+        select * from tb_test
     </select>
-
 </mapper>

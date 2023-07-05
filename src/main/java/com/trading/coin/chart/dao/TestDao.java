@@ -1,4 +1,4 @@
-package com.trading.coin.dao;
+package com.trading.coin.chart.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 

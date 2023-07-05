@@ -1,6 +1,6 @@
-package com.trading.coin.controller;
+package com.trading.coin.chart.controller;
 
-import com.trading.coin.dao.TestDao;
+import com.trading.coin.chart.service.TestService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +17,10 @@ import java.util.Map;
 @RequestMapping("/test")
 public class TestController {
 
-    private TestDao testDao;
+    private TestService testService;
 
     @GetMapping("/seletTest")
     public List<Map<String, Object>> seletTest(){
-        return this.testDao.selectTest();
+        return this.testService.selectTest();
     }
 }

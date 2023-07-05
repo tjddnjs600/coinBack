@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trading.coin.chart.dao.MarketDao">
+    <select id="selectMarketList" resultType="java.util.Map">
+        SELECT MARKET, KOREAN_NAME, ENGLISH_NAME FROM TB_MARKET
+    </select>
+
+    <insert id="insertMarket" parameterType="java.util.Map">
+        INSERT INTO TB_MARKET(
+            MARKET, KOREAN_NAME, ENGLISH_NAME
+        ) VALUES
+        <foreach collection="list" item="param" separator=",">
+            (#{param.market},#{param.korean_name},#{param.english_name})
+        </foreach>
+    </insert>
+
+</mapper>

@@ -1,7 +1,7 @@
 #logLevel
 logging:
   level:
-    org : debug
+    org : info
     com : debug
     root : info
 
