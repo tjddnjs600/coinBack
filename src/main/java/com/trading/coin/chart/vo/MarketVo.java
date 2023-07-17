@@ -21,7 +21,7 @@ public class MarketVo {
     private String low_price;
     private String trade_price;
     private String prev_closing_price;
-    private String charge;
+    private String change;
     private String change_price;
     private String change_rate;
     private String signed_change_price;

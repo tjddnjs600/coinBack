@@ -1,14 +1,18 @@
 package com.trading.coin.util;
 
+import com.trading.coin.chart.vo.CandleVo;
 import com.trading.coin.chart.vo.MarketVo;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -43,5 +47,22 @@ public class ApiUtil {
 
         log.info("resVo : {}",resVo);
         return resVo;
+    }
+
+    public List<CandleVo> getMarketCandles(String market, Date to, int cnt, String convert){
+        String url = "https://api.upbit.com/v1/candles/days?market="+market+"&count="+cnt;
+
+        /*if(StringUtils.isNotEmpty(String.valueOf(to)))
+            url += "&to="+to;*/
+
+        if(StringUtils.isNotEmpty(convert))
+            url += "&convertingPriceUnit=" + convert;
+
+        ResponseEntity<List<CandleVo>> res = restTemplate.exchange(url, HttpMethod.GET
+                , null, new ParameterizedTypeReference<List<CandleVo>>() {});
+
+        log.info("resVo : {}",res.getBody());
+
+        return res.getBody();
     }
 }

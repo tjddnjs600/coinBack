@@ -8,7 +8,7 @@
     </select>
 
     <insert id="insertMarket" parameterType="java.util.Map">
-        INSERT INTO TB_MARKET(
+        REPLACE INTO TB_MARKET(
             MARKET, KOREAN_NAME, ENGLISH_NAME
         ) VALUES
         <foreach collection="list" item="param" separator=",">
@@ -16,4 +16,79 @@
         </foreach>
     </insert>
 
+    <select id="selectMarketInfo" parameterType="com.trading.coin.chart.vo.MarketVo"
+            resultType="com.trading.coin.chart.vo.MarketVo">
+        SELECT MARKET
+             , TRADE_DATE
+             , TRADE_TIME
+             , TRADE_DATE_KST
+             , TRADE_TIME_KST
+             , OPENING_PRICE
+             , HIGH_PRICE
+             , LOW_PRICE
+             , TRADE_PRICE
+             , PREV_CLOSING_PRICE
+             , `CHANGE`
+             , CHANGE_PRICE
+             , CHANGE_RATE
+             , TRADE_VOLUME
+        FROM TB_MARKET_INFO
+        WHERE MARKET = #{market}
+    </select>
+
+    <insert id="insertMarketInfo" parameterType="com.trading.coin.chart.vo.MarketVo">
+        REPLACE INTO TB_MARKET_INFO(
+            MARKET
+            ,TRADE_DATE
+            ,TRADE_TIME
+            ,TRADE_DATE_KST
+            ,TRADE_TIME_KST
+            ,TRADE_TIMESTAMP
+            ,OPENING_PRICE
+            ,HIGH_PRICE
+            ,LOW_PRICE
+            ,TRADE_PRICE
+            ,PREV_CLOSING_PRICE
+            ,`CHANGE`
+            ,CHANGE_PRICE
+            ,CHANGE_RATE
+            ,SIGNED_CHANGE_PRICE
+            ,SIGNED_CHANGE_RATE
+            ,TRADE_VOLUME
+            ,ACC_TRADE_PRICE
+            ,ACC_TRADE_PRICE_24H
+            ,ACC_TRADE_VOLUME
+            ,ACC_TRADE_VOLUME_24H
+            ,HIGHEST_52_WEEK_PRICE
+            ,HIGHEST_52_WEEK_DATE
+            ,LOWEST_52_WEEK_PRICE
+            ,LOWEST_52_WEEK_DATE
+    ) VALUES (
+        #{market}
+        ,#{trade_date}
+        ,#{trade_time}
+        ,#{trade_date_kst}
+        ,#{trade_time_kst}
+        ,#{trade_timestamp}
+        ,#{opening_price}
+        ,#{high_price}
+        ,#{low_price}
+        ,#{trade_price}
+        ,#{prev_closing_price}
+        ,#{change}
+        ,#{change_price}
+        ,#{change_rate}
+        ,#{signed_change_price}
+        ,#{signed_change_rate}
+        ,#{trade_volume}
+        ,#{acc_trade_price}
+        ,#{acc_trade_price_24h}
+        ,#{acc_trade_volume}
+        ,#{acc_trade_volume_24h}
+        ,#{highest_52_week_price}
+        ,#{highest_52_week_date}
+        ,#{lowest_52_week_price}
+        ,#{lowest_52_week_date}
+        )
+    </insert>
 </mapper>

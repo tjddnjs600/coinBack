@@ -2,11 +2,11 @@ package com.trading.coin.chart.service.impl;
 
 import com.trading.coin.chart.dao.MarketDao;
 import com.trading.coin.chart.service.ChartService;
+import com.trading.coin.chart.vo.CandleVo;
 import com.trading.coin.chart.vo.MarketVo;
 import com.trading.coin.util.ApiUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +33,17 @@ public class ChartServiceImpl implements ChartService {
     }
 
     @Override
+    public int insertMarketInfo(String marketNm) {
+        return 0;
+    }
+
+    @Override
     public MarketVo selectMarketInfo(String marketNm) {
         return this.apiUtil.getMarketInfo(marketNm);
+    }
+
+    @Override
+    public List<CandleVo> selectCandle(String marketNm, int cnt) {
+        return this.apiUtil.getMarketCandles(marketNm, null, cnt, null);
     }
 }
