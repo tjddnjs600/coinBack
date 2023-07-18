@@ -16,14 +16,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-@Component
-@AllArgsConstructor
 @Slf4j
 public class ApiUtil {
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private static final RestTemplate restTemplate = new RestTemplate();
 
-    public List<Map<String, String>> getMarketList(){
+    public static List<Map<String, String>> getMarketList(){
 
         String url = "https://api.upbit.com/v1/market/all";
 
@@ -37,7 +35,7 @@ public class ApiUtil {
         return resList;
     };
 
-    public MarketVo getMarketInfo(String marketNm){
+    public static MarketVo getMarketInfo(String marketNm){
         String url = "https://api.upbit.com/v1/ticker?markets=";
 
         ResponseEntity<List<MarketVo>> res = restTemplate.exchange(url + marketNm, HttpMethod.GET
@@ -49,7 +47,7 @@ public class ApiUtil {
         return resVo;
     }
 
-    public List<CandleVo> getMarketCandles(String market, Date to, int cnt, String convert){
+    public static List<CandleVo> getMarketCandles(String market, Date to, int cnt, String convert){
         String url = "https://api.upbit.com/v1/candles/days?market="+market+"&count="+cnt;
 
         /*if(StringUtils.isNotEmpty(String.valueOf(to)))

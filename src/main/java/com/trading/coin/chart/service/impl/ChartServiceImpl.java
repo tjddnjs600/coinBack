@@ -20,30 +20,13 @@ public class ChartServiceImpl implements ChartService {
 
     private MarketDao marketDao;
 
-    private ApiUtil apiUtil;
-
-    @Override
-    public int insertMarket() {
-
-        List<Map<String, String>> list = this.apiUtil.getMarketList().stream()
-                                        .filter(nm -> nm.get("market").contains("KRW")).collect(Collectors.toList());
-
-        log.info("listtt  : {}", list);
-        return this.marketDao.insertMarket(list);
-    }
-
-    @Override
-    public int insertMarketInfo(String marketNm) {
-        return 0;
-    }
-
     @Override
     public MarketVo selectMarketInfo(String marketNm) {
-        return this.apiUtil.getMarketInfo(marketNm);
+        return ApiUtil.getMarketInfo(marketNm);
     }
 
     @Override
     public List<CandleVo> selectCandle(String marketNm, int cnt) {
-        return this.apiUtil.getMarketCandles(marketNm, null, cnt, null);
+        return ApiUtil.getMarketCandles(marketNm, null, cnt, null);
     }
 }

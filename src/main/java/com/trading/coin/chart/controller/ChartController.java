@@ -21,11 +21,6 @@ public class ChartController {
 
     private ChartService chartService;
 
-    @GetMapping("/insertMarket")
-    public int insertMarket(){
-        return this.chartService.insertMarket();
-    }
-
     @GetMapping("/selectMarketInfo/{marketNm}")
     public MarketVo selectMarketInfo(@PathVariable String marketNm){
         return this.chartService.selectMarketInfo(marketNm);
@@ -33,6 +28,6 @@ public class ChartController {
 
     @GetMapping("/selectCandles/{marketNm}")
     public List<CandleVo> selectCandle(@PathVariable String marketNm){
-        return this.chartService.selectCandle(marketNm, 100);
+        return this.chartService.selectCandle(marketNm, 200);
     }
 }
