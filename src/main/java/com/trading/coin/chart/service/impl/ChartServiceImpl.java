@@ -21,6 +21,11 @@ public class ChartServiceImpl implements ChartService {
     private MarketDao marketDao;
 
     @Override
+    public List<Map<String, String>> selectMarketList() {
+        return this.marketDao.selectMarketList();
+    }
+
+    @Override
     public MarketVo selectMarketInfo(String marketNm) {
         return ApiUtil.getMarketInfo(marketNm);
     }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -21,13 +22,18 @@ public class ChartController {
 
     private ChartService chartService;
 
+    @GetMapping("/selectMarket")
+    public List<Map<String, String>> selectMarket(){
+        return this.chartService.selectMarketList();
+    }
+
     @GetMapping("/selectMarketInfo/{marketNm}")
     public MarketVo selectMarketInfo(@PathVariable String marketNm){
         return this.chartService.selectMarketInfo(marketNm);
     }
 
-    @GetMapping("/selectCandles/{marketNm}")
-    public List<CandleVo> selectCandle(@PathVariable String marketNm){
+    @GetMapping("/selectCandles/{marketNm}/{moment}")
+    public List<CandleVo> selectCandle(@PathVariable String marketNm, @PathVariable String moment){
         return this.chartService.selectCandle(marketNm, 200);
     }
 }
