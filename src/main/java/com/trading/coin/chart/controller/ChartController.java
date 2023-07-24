@@ -17,7 +17,7 @@ import java.util.Map;
 @RestController
 @AllArgsConstructor
 @Slf4j
-@RequestMapping("/chart")
+@RequestMapping("/api/chart")
 public class ChartController {
 
     private ChartService chartService;
@@ -32,8 +32,8 @@ public class ChartController {
         return this.chartService.selectMarketInfo(marketNm);
     }
 
-    @GetMapping("/selectCandles/{marketNm}/{moment}")
-    public List<CandleVo> selectCandle(@PathVariable String marketNm, @PathVariable String moment){
-        return this.chartService.selectCandle(marketNm, 200);
+    @GetMapping(value = {"/selectCandles/{marketNm}/{moment}/{minCnt}", "/selectCandles/{marketNm}/{moment}"})
+    public List<Map<String, Object>> selectCandle(@PathVariable String marketNm, @PathVariable String moment, @PathVariable(required = false) String minCnt){
+        return this.chartService.selectCandle(marketNm, 200, moment, minCnt);
     }
 }

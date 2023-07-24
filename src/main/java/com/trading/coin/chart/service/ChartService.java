@@ -12,5 +12,5 @@ public interface ChartService {
 
     MarketVo selectMarketInfo(String marketNm);
 
-    List<CandleVo> selectCandle(String marketNm, int cnt);
+    List<Map<String, Object>> selectCandle(String marketNm, int cnt, String moment, String minCnt);
 }

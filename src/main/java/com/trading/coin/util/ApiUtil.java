@@ -47,11 +47,17 @@ public class ApiUtil {
         return resVo;
     }
 
-    public static List<CandleVo> getMarketCandles(String market, Date to, int cnt, String convert){
-        String url = "https://api.upbit.com/v1/candles/days?market="+market+"&count="+cnt;
+    public static List<CandleVo> getMarketCandles(String market, String to, int cnt, String convert, String moment, String minCnt){
+        String url = "";
 
-        /*if(StringUtils.isNotEmpty(String.valueOf(to)))
-            url += "&to="+to;*/
+        if("minutes".equals(moment)){
+            url = "https://api.upbit.com/v1/candles/"+moment+"/"+minCnt+"?market="+market+"&count="+cnt;
+        } else {
+            url = "https://api.upbit.com/v1/candles/"+moment+"?market="+market+"&count="+cnt;
+        }
+
+        if(StringUtils.isNotEmpty(to))
+            url += "&to="+to;
 
         if(StringUtils.isNotEmpty(convert))
             url += "&convertingPriceUnit=" + convert;
